@@ -26,3 +26,18 @@ spec = do
                             (0,r) -> [r]
                             (q,r) -> r : digits q
 ```
+
+## Don't fotget
+In partial applied infix function the last parameter will be applied into "empty" parameter position:
+```
+λ (+2) 3
+5:: Num a => a
+λ (2+) 3
+5:: Num a => a
+
+λ (`div` 10) 153
+15:: Integral a => a
+λ (153 `div`) 10
+15:: Integral a => a
+```
+**Split integer number:** ```map (`mod`10) . takeWhile (>0) . iterate (`div`10) $ 153``` 
